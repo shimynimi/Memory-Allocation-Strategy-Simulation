@@ -1,44 +1,73 @@
 # Memory Allocation Strategy Simulation
 
-A Java-based educational simulation of contiguous memory allocation, comparing **First Fit** and **Best Fit**.
+A Java simulation comparing two contiguous memory allocation strategies: **First Fit** and **Best Fit**.
 
 ## Overview
 
-The project models a simplified memory manager that processes allocation and release requests over a contiguous memory space. It demonstrates how allocation policy influences placement and fragmentation.
+The program models a fixed-size memory array and processes allocation and release operations. It runs the same sequence independently through both strategies, then reports the final memory layout, compaction count, and failed requests.
 
 ## Features
 
-- First Fit and Best Fit allocation strategies
-- Allocation and release requests
-- Tracking and locating allocated blocks
-- Memory compaction when a request cannot be satisfied by the current free-space layout
-- Text-based examples for reproducible walkthroughs
-
-## Example observation
-
-In the sample workload tested during project preparation, First Fit required one compaction, while Best Fit completed the sequence without compaction. This is a result from one sample only—not a general performance conclusion.
+- First Fit: selects the first free contiguous block large enough for the request.
+- Best Fit: selects the smallest free contiguous block that can satisfy the request.
+- Process allocation and release operations.
+- Compaction when total free memory is sufficient but no single free block is large enough.
+- Rejection of invalid, duplicate, or unsatisfiable allocation requests.
+- Input-file parsing with comments and line-specific error messages.
 
 ## Requirements
 
-- Java Development Kit (JDK) 8 or later
+- Java 11 or later.
 
-## Running
+## Project structure
 
-The Java source file should be placed under `src/`. Compile and run using the actual class name in the source:
-
-```bash
-javac src/<MainClass>.java
-java -cp src <MainClass>
+```text
+.
+├── README.md
+├── src/
+│   └── MemoryAllocator.java
+└── examples/
+    └── operations.txt
 ```
 
-See `examples/` for an illustrative workload and its observed summary. The example input may need adaptation to the parser format implemented by the submitted source.
+## Run
+
+From the repository root:
+
+```bash
+javac -d out src/MemoryAllocator.java
+java -cp out MemoryAllocator 16 examples/operations.txt
+```
+
+The first argument is the memory size. The second is the path to the operations file. If omitted, the program defaults to a memory size of 16 and `examples/operations.txt`.
+
+## Input format
+
+Each non-comment line must be one of:
+
+```text
+REQUEST <process-name> <size>
+RELEASE <process-name>
+```
+
+Lines may contain comments beginning with `#`.
+
+## Sample observation
+
+For the included 16-cell workload, the tested run produced:
+
+- First Fit: one compaction and zero failed requests.
+- Best Fit: zero compactions and zero failed requests.
+
+This is an observation for the included example only. It does not establish that Best Fit is generally superior; outcomes depend on workload and allocation sequence.
 
 ## Limitations
 
-- This is an educational simulation, not an operating-system memory allocator.
-- The First Fit/Best Fit comparison is based on one sample workload.
-- No broad benchmark or statistical performance evaluation is claimed.
+- This is an educational simulation, not a production operating-system memory manager.
+- The implementation models contiguous allocation in a one-dimensional array.
+- The example workload is small and is not a comprehensive benchmark.
+- No generalized performance claim is made from the sample result.
 
 ## License
 
-No open-source license has been added. All rights reserved unless the owner specifies otherwise.
+No open-source license has been specified.

@@ -1,0 +1,9 @@
+# A short sequence that demonstrates different placements and fragmentation.
+REQUEST A 5
+REQUEST B 4
+REQUEST C 3
+REQUEST D 4
+RELEASE A
+RELEASE C
+REQUEST E 3
+REQUEST F 5

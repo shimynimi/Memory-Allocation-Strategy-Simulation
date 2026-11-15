@@ -1,9 +1,16 @@
-Observed during the sample run used in project preparation:
+Tested command:
+javac -d out src/MemoryAllocator.java
+java -cp out MemoryAllocator 16 examples/operations.txt
 
-First Fit:
-- One compaction was required.
+Observed summary for the included sample:
+FIRST_FIT:
+  Final memory: E:3 | B:4 | D:4 | F:5
+  Compactions: 1
+  Failed requests: 0
 
-Best Fit:
-- No compaction was required.
+BEST_FIT:
+  Final memory: F:5 | B:4 | E:3 | D:4
+  Compactions: 0
+  Failed requests: 0
 
-This is a single illustrative workload, not evidence that Best Fit always performs better.
+These results describe only this particular sample workload.
