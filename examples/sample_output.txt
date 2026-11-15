@@ -1,0 +1,9 @@
+Observed during the sample run used in project preparation:
+
+First Fit:
+- One compaction was required.
+
+Best Fit:
+- No compaction was required.
+
+This is a single illustrative workload, not evidence that Best Fit always performs better.

@@ -1,0 +1,8 @@
+# Illustrative workload; adapt tokens to the Java program's exact input parser.
+MEMORY_SIZE 100
+REQUEST A 20
+REQUEST B 15
+REQUEST C 30
+RELEASE B
+REQUEST D 10
+REQUEST E 25
